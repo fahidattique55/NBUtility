@@ -97,12 +97,8 @@
 		299AB7C61EDC09C600B4512A /* NBUtility */ = {
 			isa = PBXGroup;
 			children = (
-				299AB7C71EDC09C600B4512A /* AppDelegate.swift */,
-				299AB7C91EDC09C600B4512A /* ViewController.swift */,
-				299AB7CB1EDC09C600B4512A /* Main.storyboard */,
-				299AB7CE1EDC09C600B4512A /* Assets.xcassets */,
-				299AB7D01EDC09C600B4512A /* LaunchScreen.storyboard */,
-				299AB7D31EDC09C600B4512A /* Info.plist */,
+				299AB7F61EDC0A1100B4512A /* Example */,
+				299AB7F51EDC0A0800B4512A /* Classes */,
 			);
 			path = NBUtility;
 			sourceTree = "<group>";
@@ -123,6 +119,26 @@
 				299AB7E91EDC09C600B4512A /* Info.plist */,
 			);
 			path = NBUtilityUITests;
+			sourceTree = "<group>";
+		};
+		299AB7F51EDC0A0800B4512A /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		299AB7F61EDC0A1100B4512A /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				299AB7C71EDC09C600B4512A /* AppDelegate.swift */,
+				299AB7C91EDC09C600B4512A /* ViewController.swift */,
+				299AB7CB1EDC09C600B4512A /* Main.storyboard */,
+				299AB7CE1EDC09C600B4512A /* Assets.xcassets */,
+				299AB7D01EDC09C600B4512A /* LaunchScreen.storyboard */,
+				299AB7D31EDC09C600B4512A /* Info.plist */,
+			);
+			name = Example;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
