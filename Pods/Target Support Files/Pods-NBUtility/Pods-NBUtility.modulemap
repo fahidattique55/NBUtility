@@ -1,0 +1,6 @@
+framework module Pods_NBUtility {
+  umbrella header "Pods-NBUtility-umbrella.h"
+
+  export *
+  module * { export * }
+}

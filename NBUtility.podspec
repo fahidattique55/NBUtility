@@ -14,7 +14,11 @@ Utility files for multiple purposes…
 
   s.ios.deployment_target = '9.0'
 
-  s.source_files = 'NBUtility/Classes/**/*'
+  s.source_files = 'NBUtility/Classes/**/*.{swift}'
+
+  s.dependency  "Alamofire"
+  s.dependency  "ObjectMapper"
+  s.dependency  "AlamofireObjectMapper"
   
 
 end
