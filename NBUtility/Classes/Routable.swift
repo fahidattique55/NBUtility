@@ -18,7 +18,7 @@ import QorumLogs
 /// Make sure to comform this protocol with *Struct UrlService* in your service manager file to return full url strings
 
 
-protocol UrlDirectable {
+public protocol UrlDirectable {
     func directableURLString() -> String
 }
 
@@ -35,18 +35,15 @@ protocol UrlDirectable {
 
 
 
-struct UrlService : MapContext, RawRepresentable, Equatable, Hashable {
+public struct UrlService : MapContext, RawRepresentable {
     
-    typealias RawValue = String
-    var rawValue: String
-    
-    //  Hashable
-    var hashValue: Int {
-        return rawValue.hashValue
+    public typealias RawValue = String
+    public var rawValue: String
+    public init(rawValue: RawValue) {
+        self.rawValue = rawValue
     }
-    
-//    static let login  = UrlService(rawValue: "user/login")    ----    Example
 }
+
 
 
 
@@ -55,7 +52,7 @@ struct UrlService : MapContext, RawRepresentable, Equatable, Hashable {
 
 ///  Service template type closures for auto-mapping of custom object and custom object's array
 
-struct ServiceSuccessBlock<T> {
+public struct ServiceSuccessBlock<T> {
     typealias array = (_ response: HTTPURLResponse?, _ result: [T]?) -> Void
     typealias object = (_ response: HTTPURLResponse?, _ result: T?) -> Void
 }
@@ -64,20 +61,29 @@ struct ServiceSuccessBlock<T> {
 
 
 
+// Service response closures
+
+public typealias SuccessJSONBlock = (_ response: HTTPURLResponse?, _ result: JSONTopModal) -> Void
+public typealias FailureErrorBlock = (_ error: NSError) -> Void
+
+
+
+
+
+
 
 ///  JSON top model or base model for all server API call responses
 
-class JSONTopModal: Mappable {
+public class JSONTopModal: Mappable {
     
     var isError: Bool = false
     var message: String = ""
     var statusCode: Int = 0
     var data: AnyObject = NSObject()
     
+    required public init?(map: Map) {}
     
-    required init?(map: Map) {}
-    
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
         
         isError <- map["error"]
         message <- map["message"]
@@ -92,7 +98,7 @@ class JSONTopModal: Mappable {
 
 ///     Service method types for API calls
 
-enum ServiceMethod {
+public enum ServiceMethod {
     
     case get, post, put, delete
     
@@ -123,16 +129,31 @@ enum ServiceMethod {
 
 
 
+
+
 /// Routable Protocol  ---  Shared implementation of helper methods for API calls is implemented in its extension
 
 
-protocol Routable {
+public protocol Routable {
 
-    typealias SuccessJSONBlock = (_ response: HTTPURLResponse?, _ result: JSONTopModal) -> Void
-    typealias FailureErrorBlock = (_ error: NSError) -> Void
+
     
-    func handleServerError(_ result: DataResponse<JSONTopModal>, failure: FailureErrorBlock!) -> Bool
+    /// Header Authorization
+    ///
+    /// - Parameters:
+    ///     - authorized:   Bool value to send app specific headers to your header
+
     func authorizationHeadersIf(_ authorized:Bool) -> [String: String]?
+
+    
+    
+    /// Error validation of your server
+    ///
+    /// - Parameters:
+    ///     - result:    Auto-mapped JSON top model to handle error. You can take many decisions on this reponse i.e: Token Expiry etc
+    ///     - failure:   *Failure block* -> used by Routable protocol in shared implementation
+
+    func handleServerError(_ result: DataResponse<JSONTopModal>, failure: FailureErrorBlock!) -> Bool
 
 }
 
@@ -145,6 +166,7 @@ protocol Routable {
 
 extension Routable {
     
+
 
                                                         //MARK: - Simple Requests
 

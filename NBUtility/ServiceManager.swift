@@ -78,7 +78,7 @@ extension UrlService {
 
 extension UrlService: UrlDirectable {
     
-    func directableURLString() -> String {
+    public func directableURLString() -> String {
         
         let servicePath = self.rawValue
         let tail = "v1"
@@ -125,10 +125,6 @@ class ServiceManager: Routable {
     
     
     
-    /// Header Authorization
-    ///
-    /// - Parameters:
-    ///     - authorized:   Bool value to send app specific headers to your header
 
     func authorizationHeadersIf(_ authorized: Bool) -> [String : String]? {
         
@@ -150,13 +146,8 @@ class ServiceManager: Routable {
     
     
 
-    /// Error validation of your server
-    ///
-    /// - Parameters:
-    ///     - result:    Auto-mapped JSON top model to handle error. You can take many decisions on this reponse i.e: Token Expiry etc
-    ///     - failure:   *Failure block* -> used by Routable protocol in shared implementation
 
-    func handleServerError(_ result: DataResponse<JSONTopModal>, failure: Routable.FailureErrorBlock!) -> Bool {
+    func handleServerError(_ result: DataResponse<JSONTopModal>, failure: FailureErrorBlock!) -> Bool {
         
         let resultValue = result.value!
         if resultValue.isError {
