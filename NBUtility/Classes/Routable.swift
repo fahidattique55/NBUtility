@@ -18,7 +18,7 @@ import QorumLogs
 /// Make sure to comform this protocol with *Struct UrlService* in your service manager file to return full url strings
 
 
-public protocol UrlDirectable {
+public protocol Directable: MapContext {
     func directableURLString() -> String
 }
 
@@ -35,7 +35,7 @@ public protocol UrlDirectable {
 
 
 
-public struct UrlService : MapContext, RawRepresentable {
+public struct UrlService : RawRepresentable {
     
     public typealias RawValue = String
     public var rawValue: String
@@ -185,7 +185,7 @@ extension Routable {
     ///     - failure:      *Failure Block*
     
     func request(_ method: ServiceMethod,
-                 service: UrlDirectable,
+                 service: Directable,
                  parameters: [String: AnyObject]? = nil,
                  authorized: Bool = false,
                  encoding: ParameterEncoding = JSONEncoding.default,
@@ -218,7 +218,7 @@ extension Routable {
     ///     - failure:      *Failure Block*
     
     func requestForObject<T : Mappable>(_ method: ServiceMethod,
-                 service: UrlDirectable,
+                 service: Directable,
                  parameters: [String: AnyObject]? = nil,
                  authorized: Bool = false,
                  mapperClass:T.Type,
@@ -229,7 +229,7 @@ extension Routable {
         let request = simpleRequest(method, service: service, parameters: parameters, authorized: authorized, encoding:encoding,  success: { (response, result) in
             
             let resultData = result.data as! [String: AnyObject]
-            let resultObject = Mapper<T>(context: service as! UrlService).map(JSON: resultData)
+            let resultObject = Mapper<T>(context: service).map(JSON: resultData)
             success(response, resultObject)
             
         }, failure: failure)
@@ -254,7 +254,7 @@ extension Routable {
     ///     - failure:      *Failure Block*
     
     func requestForArray<T : Mappable>(_ method: ServiceMethod,
-                 service: UrlDirectable,
+                 service: Directable,
                  parameters: [String: AnyObject]? = nil,
                  authorized: Bool = false,
                  mapperClass:T.Type,
@@ -265,7 +265,7 @@ extension Routable {
         let request = simpleRequest(method, service: service, parameters: parameters, authorized: authorized, encoding: encoding, success: { (response, result) in
             
             let resultData = result.data as! [[String: AnyObject]]
-            let resultArray = Mapper<T>(context: service as! UrlService).mapArray(JSONArray: resultData)
+            let resultArray = Mapper<T>(context: service).mapArray(JSONArray: resultData)
             success(response, resultArray)
             
         }, failure: failure)
@@ -290,7 +290,7 @@ extension Routable {
     ///     - failure:      *Failure Block*
 
     func simpleRequest(_ method: ServiceMethod,
-                       service: UrlDirectable,
+                       service: Directable,
                        parameters: [String: AnyObject]?,
                        authorized: Bool,
                        encoding: ParameterEncoding = JSONEncoding.default,
@@ -340,7 +340,7 @@ extension Routable {
     ///     - failure:              *Failure Block*
 
     func mutipartRequest(_ method: ServiceMethod,
-                 service: UrlDirectable,
+                 service: Directable,
                  multipartFormData: @escaping ((MultipartFormData) -> Void),
                  uploadProgress: @escaping ((Progress) -> Void),
                  sessionTask: ((_ task: URLSessionTask) -> Void)? = nil,
@@ -375,7 +375,7 @@ extension Routable {
 
     
     func mutipartRequestForObject<T : Mappable>(_ method: ServiceMethod,
-                 service: UrlDirectable,
+                 service: Directable,
                  multipartFormData: @escaping ((MultipartFormData) -> Void),
                  uploadProgress: @escaping ((Progress) -> Void),
                  sessionTask: ((_ task: URLSessionTask) -> Void)? = nil,
@@ -387,7 +387,7 @@ extension Routable {
         multipartRequest(method, service: service, multipartFormData: multipartFormData, uploadProgress: uploadProgress, sessionTask: sessionTask, authorized: authorized, success: { (response, result) in
             
             let resultData = result.data as! [String: AnyObject]
-            let resultObject = Mapper<T>(context: service as! UrlService).map(JSON: resultData)
+            let resultObject = Mapper<T>(context: service).map(JSON: resultData)
             success(response,resultObject)
             
         }, failure: failure)
@@ -413,7 +413,7 @@ extension Routable {
     ///     - failure:              *Failure Block*
 
     func mutipartRequestForArray<T : Mappable>(_ method: ServiceMethod,
-                 service: UrlDirectable,
+                 service: Directable,
                  multipartFormData: @escaping ((MultipartFormData) -> Void),
                  uploadProgress: @escaping ((Progress) -> Void),
                  sessionTask: ((_ task: URLSessionTask) -> Void)? = nil,
@@ -425,7 +425,7 @@ extension Routable {
         multipartRequest(method, service: service, multipartFormData: multipartFormData, uploadProgress:  uploadProgress, sessionTask: sessionTask, authorized: authorized, success: { (response, result) in
             
             let resultData = result.data as! [[String: AnyObject]]
-            let resultArray = Mapper<T>(context: service as! UrlService).mapArray(JSONArray: resultData)
+            let resultArray = Mapper<T>(context: service).mapArray(JSONArray: resultData)
             success(response, resultArray)
             
         }, failure: failure)
@@ -450,7 +450,7 @@ extension Routable {
     ///     - failure:              *Failure Block*
 
     func multipartRequest(_ method: ServiceMethod,
-                          service: UrlDirectable,
+                          service: Directable,
                           multipartFormData: @escaping ((MultipartFormData) -> Void),
                           uploadProgress: @escaping ((Progress) -> Void),
                           sessionTask: ((_ task: URLSessionTask) -> Void)?,

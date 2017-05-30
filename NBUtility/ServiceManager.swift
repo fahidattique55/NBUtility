@@ -67,7 +67,7 @@ extension UrlService {
 
 
 
-// Extension of UrlService to conform protocol UrlDirectable
+// Extension of UrlService to conform protocol Directable
 //
 // - Warning !!!
 //     - Must implement this method to define app specific directable URLs including base, tail and service method strings
@@ -76,7 +76,7 @@ extension UrlService {
 
 
 
-extension UrlService: UrlDirectable {
+extension UrlService: Directable {
     
     public func directableURLString() -> String {
         
