@@ -19,6 +19,6 @@ Utility files for multiple purposes…
   s.dependency  "Alamofire"
   s.dependency  "ObjectMapper"
   s.dependency  "AlamofireObjectMapper"
-  
+  s.dependency  "QorumLogs"
 
 end

@@ -39,9 +39,19 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>QorumLogs.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0C449943497BA2F7C4ED86AC963BE9FA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>2F5622F3B18DF497981AB58C6D1FC72F</key>
 		<dict>
 			<key>primary</key>
@@ -67,12 +77,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A5559BA1766DBF3C51F9338F2BEB4E7A</key>
+		<key>E59625A66567F63A22C449BE3BEBFB15</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E59625A66567F63A22C449BE3BEBFB15</key>
+		<key>F79D3705490953630514B21A0756F4FB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

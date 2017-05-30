@@ -3,16 +3,29 @@
 //  NBUtility
 //
 //  Created by Fahid Attique on 5/29/17.
-//  Copyright © 2017 NextBridge. All rights reserved.
+//  Copyright © 2017 Fahid Attique. All rights reserved.
 //
 
 import UIKit
 
 class ViewController: UIViewController {
 
+
+    fileprivate let manager:ServiceManager = ServiceManager()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        _ = manager.requestForArray(.get, service: UrlService.weatherConditions, mapperClass: WeatherCondition.self, success: { (response, result) in
+            
+            print("success")
+            
+        }) { error in
+            print("\(error)")
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,4 +35,3 @@ class ViewController: UIViewController {
 
 
 }
-

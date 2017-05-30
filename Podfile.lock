@@ -6,18 +6,21 @@ PODS:
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 2.0)
   - ObjectMapper (2.2.5)
+  - QorumLogs (0.9)
 
 DEPENDENCIES:
   - Alamofire
   - AlamofireImage
   - AlamofireObjectMapper
+  - QorumLogs
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
   AlamofireObjectMapper: 435adc82f5b367679bd9e71c4974a54efd0b2521
   ObjectMapper: fb30f71e08470d1e5a20b199fafe1246281db898
+  QorumLogs: 9a484df6973a3697ac79fe2273140fde6b36dccc
 
-PODFILE CHECKSUM: 815374c4ae0bbaea7177e9e6c55a23c07febfcba
+PODFILE CHECKSUM: 4cf3c4d35b5b8308ba66fcabe8b5c208f8a591b2
 
 COCOAPODS: 1.2.0
