@@ -3,10 +3,11 @@
 //  NBUtility
 //
 //  Created by Fahid Attique on 5/29/17.
-//  Copyright © 2017 NextBridge. All rights reserved.
+//  Copyright © 2017 Fahid Attique. All rights reserved.
 //
 
 import UIKit
+import QorumLogs
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        QorumLogs.enabled = true
         return true
     }
 

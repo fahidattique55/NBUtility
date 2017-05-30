@@ -8,7 +8,7 @@ target 'NBUtility' do
     pod 'Alamofire'
     pod 'AlamofireObjectMapper'
     pod 'AlamofireImage'
-
+    pod 'QorumLogs'
   # Pods for NBUtility
 
   target 'NBUtilityTests' do

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'NBUtility'
-  s.version          = '0.0.1'
+  s.version          = '0.0.3'
   s.summary          = 'Utility files for multiple purposes'
 
   s.description      = <<-DESC
@@ -19,6 +19,6 @@ Utility files for multiple purposes…
   s.dependency  "Alamofire"
   s.dependency  "ObjectMapper"
   s.dependency  "AlamofireObjectMapper"
-  
+  s.dependency  "QorumLogs"
 
 end

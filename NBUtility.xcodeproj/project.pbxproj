@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		294C495E1EDD40A600788C32 /* NSError+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294C495D1EDD40A600788C32 /* NSError+Additions.swift */; };
+		294C49621EDD752800788C32 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294C49611EDD752800788C32 /* ServiceManager.swift */; };
+		294C49641EDD75D400788C32 /* WeatherCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294C49631EDD75D400788C32 /* WeatherCondition.swift */; };
 		299AB7C81EDC09C600B4512A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AB7C71EDC09C600B4512A /* AppDelegate.swift */; };
 		299AB7CA1EDC09C600B4512A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AB7C91EDC09C600B4512A /* ViewController.swift */; };
 		299AB7CD1EDC09C600B4512A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 299AB7CB1EDC09C600B4512A /* Main.storyboard */; };
@@ -40,6 +43,9 @@
 /* Begin PBXFileReference section */
 		17D8716F53E3C996BDBCC2EB /* Pods-NBUtilityTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NBUtilityTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NBUtilityTests/Pods-NBUtilityTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2236EB4165FFE3D39A1CD090 /* Pods_NBUtilityUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NBUtilityUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		294C495D1EDD40A600788C32 /* NSError+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+Additions.swift"; sourceTree = "<group>"; };
+		294C49611EDD752800788C32 /* ServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
+		294C49631EDD75D400788C32 /* WeatherCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCondition.swift; sourceTree = "<group>"; };
 		299AB7C41EDC09C600B4512A /* NBUtility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NBUtility.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		299AB7C71EDC09C600B4512A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		299AB7C91EDC09C600B4512A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				299AB7F91EDC0E6500B4512A /* Routable.swift */,
+				294C495D1EDD40A600788C32 /* NSError+Additions.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -151,6 +158,8 @@
 		299AB7F61EDC0A1100B4512A /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				294C49611EDD752800788C32 /* ServiceManager.swift */,
+				294C49631EDD75D400788C32 /* WeatherCondition.swift */,
 				299AB7C71EDC09C600B4512A /* AppDelegate.swift */,
 				299AB7C91EDC09C600B4512A /* ViewController.swift */,
 				299AB7CB1EDC09C600B4512A /* Main.storyboard */,
@@ -471,6 +480,9 @@
 				299AB7CA1EDC09C600B4512A /* ViewController.swift in Sources */,
 				299AB7C81EDC09C600B4512A /* AppDelegate.swift in Sources */,
 				299AB7FA1EDC0E6500B4512A /* Routable.swift in Sources */,
+				294C495E1EDD40A600788C32 /* NSError+Additions.swift in Sources */,
+				294C49621EDD752800788C32 /* ServiceManager.swift in Sources */,
+				294C49641EDD75D400788C32 /* WeatherCondition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,6 +739,7 @@
 				299AB7EE1EDC09C600B4512A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		299AB7EF1EDC09C600B4512A /* Build configuration list for PBXNativeTarget "NBUtilityTests" */ = {
 			isa = XCConfigurationList;
@@ -735,6 +748,7 @@
 				299AB7F11EDC09C600B4512A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		299AB7F21EDC09C600B4512A /* Build configuration list for PBXNativeTarget "NBUtilityUITests" */ = {
 			isa = XCConfigurationList;
@@ -743,6 +757,7 @@
 				299AB7F41EDC09C600B4512A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -9,17 +9,57 @@
 import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
+import QorumLogs
+
+
+
+
+/// Returns the url string by appending base, tail and UrlService string ---
+/// Make sure to comform this protocol with *Struct UrlService* in your service manager file to return full url strings
+
+
+protocol UrlDirectable {
+    func directableURLString() -> String
+}
 
 
 
 
 
-///  Service template type closures
+
+/// Extend the *UrlService* to add your app specific url service strings
+///
+/// - Example:
+///     - static let login  = UrlService(rawValue: "user/login")
+///     - static let logout = UrlService(rawValue: "user/logout")
+
+
+
+struct UrlService : MapContext, RawRepresentable, Equatable, Hashable {
+    
+    typealias RawValue = String
+    var rawValue: String
+    
+    //  Hashable
+    var hashValue: Int {
+        return rawValue.hashValue
+    }
+    
+//    static let login  = UrlService(rawValue: "user/login")    ----    Example
+}
+
+
+
+
+
+
+///  Service template type closures for auto-mapping of custom object and custom object's array
 
 struct ServiceSuccessBlock<T> {
     typealias array = (_ response: HTTPURLResponse?, _ result: [T]?) -> Void
     typealias object = (_ response: HTTPURLResponse?, _ result: T?) -> Void
 }
+
 
 
 
@@ -44,7 +84,6 @@ class JSONTopModal: Mappable {
         data <- map["data"]
         statusCode <- map["status_code"]
     }
-    
 }
 
 
@@ -92,6 +131,8 @@ protocol Routable {
     typealias SuccessJSONBlock = (_ response: HTTPURLResponse?, _ result: JSONTopModal) -> Void
     typealias FailureErrorBlock = (_ error: NSError) -> Void
     
+    func handleServerError(_ result: DataResponse<JSONTopModal>, failure: FailureErrorBlock!) -> Bool
+    func authorizationHeadersIf(_ authorized:Bool) -> [String: String]?
 
 }
 
@@ -99,13 +140,14 @@ protocol Routable {
 
 
 
-//  Extension of Routable protocol
+//  Extension of Routable protocol for providing shared implementation of request, response and error handling methods
 
 
 extension Routable {
     
 
-    
+                                                        //MARK: - Simple Requests
+
     
     
     
@@ -117,11 +159,11 @@ extension Routable {
     ///     - parameters:   *Request JSON* parameters
     ///     - authorized:   Bool value for sending *Authorized Headers*
     ///     - encoding:     Encoding type for *Request JSON* parameters
-    ///     - success:      *Service Block*
+    ///     - success:      *Success Block*
     ///     - failure:      *Failure Block*
     
     func request(_ method: ServiceMethod,
-                 service: Url.Service,
+                 service: UrlDirectable,
                  parameters: [String: AnyObject]? = nil,
                  authorized: Bool = false,
                  encoding: ParameterEncoding = JSONEncoding.default,
@@ -141,8 +183,6 @@ extension Routable {
     
     
     
-    
-    
     /// Request method for auto-mapping of server response to custom business medels
     ///
     /// - Parameters:
@@ -150,12 +190,13 @@ extension Routable {
     ///     - service:      *Service URL*
     ///     - parameters:   *Request JSON* parameters
     ///     - authorized:   Bool value for sending *Authorized Headers*
+    ///     - mapperClass:  Object type for auto-mapping
     ///     - encoding:     Encoding type for *Request JSON* parameters
-    ///     - success:      *Service Block*
+    ///     - success:      *Success Block*
     ///     - failure:      *Failure Block*
     
-    func requestObject<T : Mappable>(_ method: ServiceMethod,
-                 service: Url.Service,
+    func requestForObject<T : Mappable>(_ method: ServiceMethod,
+                 service: UrlDirectable,
                  parameters: [String: AnyObject]? = nil,
                  authorized: Bool = false,
                  mapperClass:T.Type,
@@ -166,13 +207,12 @@ extension Routable {
         let request = simpleRequest(method, service: service, parameters: parameters, authorized: authorized, encoding:encoding,  success: { (response, result) in
             
             let resultData = result.data as! [String: AnyObject]
-            let resultObject = Mapper<T>(context: service).map(JSON: resultData)
+            let resultObject = Mapper<T>(context: service as! UrlService).map(JSON: resultData)
             success(response, resultObject)
             
         }, failure: failure)
         return request.task!
     }
-    
     
     
     
@@ -186,12 +226,13 @@ extension Routable {
     ///     - service:      *Service URL*
     ///     - parameters:   *Request JSON* parameters
     ///     - authorized:   Bool value for sending *Authorized Headers*
+    ///     - mapperClass:  Object type for auto-mapping
     ///     - encoding:     Encoding type for *Request JSON* parameters
-    ///     - success:      *Service Block*
+    ///     - success:      *Success Block*
     ///     - failure:      *Failure Block*
     
-    func requestArray<T : Mappable>(_ method: ServiceMethod,
-                 service: Url.Service,
+    func requestForArray<T : Mappable>(_ method: ServiceMethod,
+                 service: UrlDirectable,
                  parameters: [String: AnyObject]? = nil,
                  authorized: Bool = false,
                  mapperClass:T.Type,
@@ -202,15 +243,13 @@ extension Routable {
         let request = simpleRequest(method, service: service, parameters: parameters, authorized: authorized, encoding: encoding, success: { (response, result) in
             
             let resultData = result.data as! [[String: AnyObject]]
-            let resultArray = Mapper<T>(context: service).mapArray(JSONArray: resultData)
+            let resultArray = Mapper<T>(context: service as! UrlService).mapArray(JSONArray: resultData)
             success(response, resultArray)
             
         }, failure: failure)
         
         return request.task!
     }
-    
-    
     
     
     
@@ -225,18 +264,20 @@ extension Routable {
     ///     - parameters:   *Request JSON* parameters
     ///     - authorized:   Bool value for sending *Authorized Headers*
     ///     - encoding:     Encoding type for *Request JSON* parameters
-    ///     - success:      *Service Block*
+    ///     - success:      *Success Block*
     ///     - failure:      *Failure Block*
 
     func simpleRequest(_ method: ServiceMethod,
-                       service: Url.Service,
+                       service: UrlDirectable,
                        parameters: [String: AnyObject]?,
                        authorized: Bool,
                        encoding: ParameterEncoding = JSONEncoding.default,
                        success: SuccessJSONBlock!,
                        failure: FailureErrorBlock!) -> Request{
         
-        let urlString = Url.urlString(service)
+        
+        
+        let urlString = service.directableURLString()
         
         let request = Alamofire.request(urlString, method: method.urlMethod, parameters: parameters, encoding: encoding, headers: authorizationHeadersIf(authorized))
         
@@ -256,19 +297,28 @@ extension Routable {
     
     
     
-    /// Simple Request method used in *request*, *requestObject* and *requestArray* for API calls
+    
+    
+                                                        //MARK: - Multipart Requests
+
+    
+    
+    
+    
+    /// Request method for non-mapping responses
     ///
     /// - Parameters:
-    ///     - method:       *Service* type
-    ///     - service:      *Service URL*
-    ///     - parameters:   *Request JSON* parameters
-    ///     - authorized:   Bool value for sending *Authorized Headers*
-    ///     - encoding:     Encoding type for *Request JSON* parameters
-    ///     - success:      *Service Block*
-    ///     - failure:      *Failure Block*
+    ///     - method:               *Service* type
+    ///     - service:              *Service URL*
+    ///     - multipartFormData:    *multipart* block
+    ///     - uploadProgress:       *progress* block
+    ///     - sessionTask:          *URLSessionTask* block
+    ///     - authorized:           Bool value for sending *Authorized Headers*
+    ///     - success:              *Success Block*
+    ///     - failure:              *Failure Block*
 
-    func request(_ method: ServiceMethod,
-                 service: Url.Service,
+    func mutipartRequest(_ method: ServiceMethod,
+                 service: UrlDirectable,
                  multipartFormData: @escaping ((MultipartFormData) -> Void),
                  uploadProgress: @escaping ((Progress) -> Void),
                  sessionTask: ((_ task: URLSessionTask) -> Void)? = nil,
@@ -281,11 +331,29 @@ extension Routable {
             success(response, result)
             
         }, failure: failure)
-        
     }
     
-    func request<T : Mappable>(_ method: ServiceMethod,
-                 service: Url.Service,
+    
+
+    
+    
+    
+    /// Request method for auto-mapping of server response to custom business medels
+    ///
+    /// - Parameters:
+    ///     - method:               *Service* type
+    ///     - service:              *Service URL*
+    ///     - multipartFormData:    *multipart* block
+    ///     - uploadProgress:       *progress* block
+    ///     - sessionTask:          *URLSessionTask* block
+    ///     - authorized:           Bool value for sending *Authorized Headers*
+    ///     - mapperClass:          Object type for auto-mapping
+    ///     - success:              *Success Block*
+    ///     - failure:              *Failure Block*
+
+    
+    func mutipartRequestForObject<T : Mappable>(_ method: ServiceMethod,
+                 service: UrlDirectable,
                  multipartFormData: @escaping ((MultipartFormData) -> Void),
                  uploadProgress: @escaping ((Progress) -> Void),
                  sessionTask: ((_ task: URLSessionTask) -> Void)? = nil,
@@ -297,15 +365,33 @@ extension Routable {
         multipartRequest(method, service: service, multipartFormData: multipartFormData, uploadProgress: uploadProgress, sessionTask: sessionTask, authorized: authorized, success: { (response, result) in
             
             let resultData = result.data as! [String: AnyObject]
-            let resultObject = Mapper<T>(context: service).map(JSON: resultData)
+            let resultObject = Mapper<T>(context: service as! UrlService).map(JSON: resultData)
             success(response,resultObject)
             
         }, failure: failure)
         
     }
     
-    func request<T : Mappable>(_ method: ServiceMethod,
-                 service: Url.Service,
+    
+    
+    
+    
+    
+    /// Request method for auto-mapping of server response to array of custom business medels
+    ///
+    /// - Parameters:
+    ///     - method:               *Service* type
+    ///     - service:              *Service URL*
+    ///     - multipartFormData:    *multipart* block
+    ///     - uploadProgress:       *progress* block
+    ///     - sessionTask:          *URLSessionTask* block
+    ///     - authorized:           Bool value for sending *Authorized Headers*
+    ///     - mapperClass:          Object type for auto-mapping
+    ///     - success:              *Success Block*
+    ///     - failure:              *Failure Block*
+
+    func mutipartRequestForArray<T : Mappable>(_ method: ServiceMethod,
+                 service: UrlDirectable,
                  multipartFormData: @escaping ((MultipartFormData) -> Void),
                  uploadProgress: @escaping ((Progress) -> Void),
                  sessionTask: ((_ task: URLSessionTask) -> Void)? = nil,
@@ -317,15 +403,32 @@ extension Routable {
         multipartRequest(method, service: service, multipartFormData: multipartFormData, uploadProgress:  uploadProgress, sessionTask: sessionTask, authorized: authorized, success: { (response, result) in
             
             let resultData = result.data as! [[String: AnyObject]]
-            let resultArray = Mapper<T>(context: service).mapArray(JSONArray: resultData)
+            let resultArray = Mapper<T>(context: service as! UrlService).mapArray(JSONArray: resultData)
             success(response, resultArray)
             
         }, failure: failure)
     }
 
     
+    
+    
+    
+    
+    
+    /// Simple Request method used in *mutipartRequest*, *mutipartRequestForObject* and *mutipartRequestForArray* for API calls
+    ///
+    /// - Parameters:
+    ///     - method:               *Service* type
+    ///     - service:              *Service URL*
+    ///     - multipartFormData:    *multipart* block
+    ///     - uploadProgress:       *progress* block
+    ///     - sessionTask:          *URLSessionTask* block
+    ///     - authorized:           Bool value for sending *Authorized Headers*
+    ///     - success:              *Success Block*
+    ///     - failure:              *Failure Block*
+
     func multipartRequest(_ method: ServiceMethod,
-                          service: Url.Service,
+                          service: UrlDirectable,
                           multipartFormData: @escaping ((MultipartFormData) -> Void),
                           uploadProgress: @escaping ((Progress) -> Void),
                           sessionTask: ((_ task: URLSessionTask) -> Void)?,
@@ -334,7 +437,7 @@ extension Routable {
                           failure: FailureErrorBlock!) {
         
         
-        let urlString = Url.urlString(service)
+        let urlString = service.directableURLString()
         visibleNetworkActivityIndicator(true)
         
         
@@ -355,7 +458,7 @@ extension Routable {
                 }
                 
                 request.uploadProgress(closure: { (Progress) in
-                    print("Upload Progress: \(Progress.fractionCompleted)")
+                    QL2("Upload Progress: \(Progress.fractionCompleted)")
                     uploadProgress(Progress)
                 })
                 
@@ -370,14 +473,48 @@ extension Routable {
     
     
     
+    
+    
+                                                        //MARK: - Network Visiblity
+
+    
+    
+    
+    
+    /// Set visiblity of activity indicator
+    ///
+    /// - Parameters:
+    ///     - visible:           Bool value for making *activity indicator* visible
+
     func visibleNetworkActivityIndicator(_ visible: Bool) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = visible
     }
     
+
     
+    
+    
+    
+    
+    
+    
+    
+    
+                                                        //MARK: - Response Handling
+
+    
+    
+    
+    
+    
+    /// Receiving response from server for API calls
+    ///
+    /// - Parameters:
+    ///     - response:          Response from server which is auto-mapped to *JSONTopModal*
+    ///     - success:           *Success Block*
+    ///     - failure:           *Failure Block*
+
     func handleServerResponse(_ response: DataResponse<JSONTopModal>, success: SuccessJSONBlock!, failure: FailureErrorBlock!) {
-        
-        //        print("response URL: \(response.response?.URL)")
         
         //Hide Network Activity Indicator whatever the case is.
         visibleNetworkActivityIndicator(false)
@@ -390,90 +527,53 @@ extension Routable {
         let requestResponse = response.response
         let resultValue = result.value!
         
-        
-        
-        //        if appMode == .test {
-        print("response: \(requestResponse)")
-        print("result: \(resultValue)")
-        print(resultValue.data as Any)
-        //        }
-        
+        QL1("response: \(requestResponse)")
+        QL1("result: \(resultValue)")
+        QL1(resultValue.data as Any)
         
         success(requestResponse, resultValue)
     }
 
+    
+    
+    
+    
+    
+    
+    
+                                                            //MARK: - Error Handling
+
+    
+    
+    
+    
+    /// Handling error in case of API call failure
+    ///
+    /// - Parameters:
+    ///     - result:     Response from server which is auto-mapped to *JSONTopModal*
+    ///     - failure:    *Failure Block*
+
+    
+    func checkForError(_ result: DataResponse<JSONTopModal>, failure: FailureErrorBlock!) -> Bool {
+        
+        if let failureError = result.error {
+            
+            if failureError is AFError {
+                
+                switch failureError as! AFError {
+                case .responseSerializationFailed( _):
+                    failure(NSError(errorMessage: "Server is not responding"))
+                default:
+                    failure(NSError(errorMessage: "Server is not responding"))
+                }
+            }
+            else {
+                failure(result.error! as NSError)
+            }
+            return true
+        }
+        
+        return handleServerError(result, failure: failure)
+    }
+
 }
-
-
-
-// MARK:- Private Methods
-
-//private extension ServiceManager {
-//    
-//    func authorizationHeadersIf(_ authorized:Bool) -> [String: String]? {
-//        var headers:[String: String]? = nil
-//        headers = [String : String]()
-//        if authorized {headers = ["Authorization": "Bearer \(appUtility.appAuthToken!)"]}
-//        headers!["api-version"] = "1"
-//        headers!["platform"] = "ios"
-//        
-//        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-//            headers!["app-version"] = version
-//        }
-//        
-//        return headers
-//    }
-//    
-//    func checkForError(_ result: DataResponse<JSONTopModal>, failure: FailureErrorBlock!) -> Bool {
-//        
-//        if let failureError = result.error {
-//            
-//            if failureError is AFError {
-//                
-//                switch failureError as! AFError {
-//                case .responseSerializationFailed( _):
-//                    failure(NSError(errorMessage: messageServerError))
-//                default:
-//                    failure(NSError(errorMessage: messageServerError))
-//                }
-//            }
-//            else {
-//                failure(result.error as! NSError)
-//            }
-//            
-//            return true
-//        }
-//        
-//        let resultValue = result.value!
-//        
-//        if resultValue.isError {
-//            QL3("Error Code: " + String(resultValue.statusCode))
-//            
-//            if resultValue.statusCode == loggedInAnotherDeviceErrorCode {
-//                appUtility.handleTokenError(resultValue.message)
-//            }
-//            else if resultValue.statusCode == UserBlockErrorCode {
-//                appUtility.handleUserBlockedError(resultValue.message)
-//            }
-//            else if resultValue.statusCode == TranslatorBlockErrorCode {
-//                appUtility.handleInterpreterBlockedError(resultValue.message)
-//            }
-//            else if resultValue.statusCode == invalidTokenErrorCode {
-//                appUtility.handleTokenError(resultValue.message)
-//            }
-//            else if resultValue.statusCode == forceUpdateRequired {
-//                appUtility.handleForceUpdate(resultValue.message)
-//            }
-//            else {
-//                failure(NSError(errorMessage: resultValue.message, code: resultValue.statusCode))
-//            }
-//            
-//            return true
-//        }
-//        
-//        return false
-//    }
-//    
-//    
-//}
-

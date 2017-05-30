@@ -3,7 +3,7 @@
 //  NBUtilityUITests
 //
 //  Created by Fahid Attique on 5/29/17.
-//  Copyright © 2017 NextBridge. All rights reserved.
+//  Copyright © 2017 Fahid Attique. All rights reserved.
 //
 
 import XCTest
