@@ -638,7 +638,7 @@
 				DEVELOPMENT_TEAM = MX893BWB34;
 				INFOPLIST_FILE = NBUtility/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Fahid.NBUtility;
+				PRODUCT_BUNDLE_IDENTIFIER = com.NextBridge.NBUtility;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -652,7 +652,7 @@
 				DEVELOPMENT_TEAM = MX893BWB34;
 				INFOPLIST_FILE = NBUtility/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Fahid.NBUtility;
+				PRODUCT_BUNDLE_IDENTIFIER = com.NextBridge.NBUtility;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -667,7 +667,7 @@
 				DEVELOPMENT_TEAM = MX893BWB34;
 				INFOPLIST_FILE = NBUtilityTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Fahid.NBUtilityTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.NextBridge.NBUtilityTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NBUtility.app/NBUtility";
@@ -683,7 +683,7 @@
 				DEVELOPMENT_TEAM = MX893BWB34;
 				INFOPLIST_FILE = NBUtilityTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Fahid.NBUtilityTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.NextBridge.NBUtilityTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NBUtility.app/NBUtility";
@@ -698,7 +698,7 @@
 				DEVELOPMENT_TEAM = MX893BWB34;
 				INFOPLIST_FILE = NBUtilityUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Fahid.NBUtilityUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.NextBridge.NBUtilityUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = NBUtility;
@@ -713,7 +713,7 @@
 				DEVELOPMENT_TEAM = MX893BWB34;
 				INFOPLIST_FILE = NBUtilityUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Fahid.NBUtilityUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.NextBridge.NBUtilityUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = NBUtility;
