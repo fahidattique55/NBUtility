@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'NBUtility'
-  s.version          = '0.0.3'
+  s.version          = '0.0.4'
   s.summary          = 'Utility files for multiple purposes'
 
   s.description      = <<-DESC
