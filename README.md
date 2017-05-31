@@ -160,7 +160,13 @@ class ServiceManager: Routable {
 
 #### Step 5
 
-* In your controllers, you can use the ```swift ServiceManager  ``` to manage your API calls
+* In your controllers, you can use the 
+
+```swift 
+ServiceManager  
+```
+to manage your API calls
+
 * Example for a simple API call is given below,
 
 
