@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		294075761EDE910100D8AE4D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 294075751EDE910100D8AE4D /* README.md */; };
 		294C495E1EDD40A600788C32 /* NSError+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294C495D1EDD40A600788C32 /* NSError+Additions.swift */; };
 		294C49621EDD752800788C32 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294C49611EDD752800788C32 /* ServiceManager.swift */; };
 		294C49641EDD75D400788C32 /* WeatherCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294C49631EDD75D400788C32 /* WeatherCondition.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		17D8716F53E3C996BDBCC2EB /* Pods-NBUtilityTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NBUtilityTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NBUtilityTests/Pods-NBUtilityTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2236EB4165FFE3D39A1CD090 /* Pods_NBUtilityUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NBUtilityUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		294075751EDE910100D8AE4D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		294C495D1EDD40A600788C32 /* NSError+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+Additions.swift"; sourceTree = "<group>"; };
 		294C49611EDD752800788C32 /* ServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		294C49631EDD75D400788C32 /* WeatherCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCondition.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 		299AB7C61EDC09C600B4512A /* NBUtility */ = {
 			isa = PBXGroup;
 			children = (
+				294075751EDE910100D8AE4D /* README.md */,
 				299AB7F61EDC0A1100B4512A /* Example */,
 				299AB7F51EDC0A0800B4512A /* Classes */,
 			);
@@ -480,6 +483,7 @@
 				299AB7CA1EDC09C600B4512A /* ViewController.swift in Sources */,
 				299AB7C81EDC09C600B4512A /* AppDelegate.swift in Sources */,
 				299AB7FA1EDC0E6500B4512A /* Routable.swift in Sources */,
+				294075761EDE910100D8AE4D /* README.md in Sources */,
 				294C495E1EDD40A600788C32 /* NSError+Additions.swift in Sources */,
 				294C49621EDD752800788C32 /* ServiceManager.swift in Sources */,
 				294C49641EDD75D400788C32 /* WeatherCondition.swift in Sources */,
