@@ -69,7 +69,7 @@ $ pod install
 
 
 #### Step 1
-* Create a ```swift ServiceManager.swift ``` file in your Xcode project
+* Create a ``` ServiceManager.swift ``` file in your Xcode project
 
 
 
@@ -160,17 +160,14 @@ class ServiceManager: Routable {
 
 #### Step 5
 
-* In your controllers, you can use the 
-
-```swift 
-ServiceManager  
-```
-to manage your API calls
+* In your controllers, you can use the ```swift   ServiceManager  ``` to manage your API calls
 
 * Example for a simple API call is given below,
 
 
 ```swift 
+
+    fileprivate let manager:ServiceManager = ServiceManager()
 
     manager.request(.get, service: UrlService.countryList, success: { (response, jsonTopModelResult) in
         
