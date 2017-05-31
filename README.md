@@ -63,6 +63,15 @@ $ pod install
 
 ## Usage
 
+
+### Routable.swift 
+
+#### Step 1
+* Create a ServiceManager.swift file in your Xcode project
+
+
+#### Next Step
+
 * Coming Soon...
 
 
