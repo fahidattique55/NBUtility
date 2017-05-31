@@ -76,10 +76,10 @@ public typealias FailureErrorBlock = (_ error: NSError) -> Void
 
 public class JSONTopModal: Mappable {
     
-    var isError: Bool = false
-    var message: String = ""
-    var statusCode: Int = 0
-    var data: AnyObject = NSObject()
+    public var isError: Bool = false
+    public var message: String = ""
+    public var statusCode: Int = 0
+    public var data: AnyObject = NSObject()
     
     required public init?(map: Map) {}
     
