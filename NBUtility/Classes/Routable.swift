@@ -164,7 +164,7 @@ public protocol Routable {
 //  Extension of Routable protocol for providing shared implementation of request, response and error handling methods
 
 
-extension Routable {
+public extension Routable {
     
 
 
