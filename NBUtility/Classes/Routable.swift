@@ -549,7 +549,6 @@ extension Routable {
         let requestResponse = response.response
         let resultValue = result.value!
         
-        QL1("response: \(requestResponse)")
         QL1("result: \(resultValue)")
         QL1(resultValue.data as Any)
         

@@ -11,8 +11,8 @@ import Foundation
 let appDomain = "com.appDomain"
 let generalAppError = "Something went wrong."
 
-extension NSError {
-    convenience init(errorMessage:String?, code: Int? = nil) {
+public extension NSError {
+    public convenience init(errorMessage:String?, code: Int? = nil) {
         
         var errorMessage = errorMessage
         
