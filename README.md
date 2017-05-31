@@ -66,8 +66,116 @@ $ pod install
 
 ### Routable.swift 
 
+
+
 #### Step 1
-* Create a ServiceManager.swift file in your Xcode project
+* Create a ```swift ServiceManager.swift ``` file in your Xcode project
+
+
+
+
+#### Step 2
+
+* Extend the ```swift struct UrlService  ``` to add your end points
+* It should look like following example,
+
+```swift 
+
+extension UrlService {
+    static let login        = UrlService(rawValue: "user/login")
+    static let logout       = UrlService(rawValue: "user/logout")
+    static let countryList  = UrlService(rawValue: "user/countryList")
+}
+```
+
+
+
+
+#### Step 3
+
+* Extend the ```swift struct UrlService  ``` to conform it with ```swift protocol Directable  ```
+* It should look like following example,
+
+```swift 
+
+extension UrlService: Directable {
+
+    public func directableURLString() -> String {
+
+        return "<Base URL>" + "/" + "<Tail>" + "/" + self.rawValue
+    
+        // return "https://abc.com" + "/" + "api" + "/" + self.rawValue
+    }
+}
+```
+
+
+
+
+#### Step 4
+
+* Create a class to manage your API calls ```swift class ServiceManager  ``` and conform it with ```swift protocol Routable  ```
+* It should look like following example,
+
+```swift 
+
+class ServiceManager: Routable {
+
+
+
+//      You need to implement this method to send App specific headers with your API calls
+
+    func authorizationHeadersIf(_ authorized: Bool) -> [String : String]? {
+
+        //  You can send Open Auth Token, Appversion, API version and many more as per your need
+        return ["app-version":"1.0"]
+    }
+
+
+
+//      You need to implement this method to validate the error of your server and you can take many decisions here with server's error status code
+
+
+    func handleServerError(_ result: DataResponse<JSONTopModal>, failure: FailureErrorBlock!) -> Bool {
+
+        let resultValue = result.value!
+
+        if resultValue.isError {
+            if resultValue.statusCode == -1 {
+                //     handleTokenError(resultValue.message)
+            }
+            else {
+                failure(NSError(errorMessage: resultValue.message, code: resultValue.statusCode))
+            }
+
+            return true
+        }
+
+        return false
+    }
+}
+
+```
+
+
+#### Step 5
+
+* In your controllers, you can use the ```swift ServiceManager  ``` to manage your API calls
+* Example for a simple API call is given below,
+
+
+```swift 
+
+    manager.request(.get, service: UrlService.countryList, success: { (response, jsonTopModelResult) in
+        
+        print("proceed with your jsonTopModelResult")
+    
+    }, failure: { (error) in
+
+        print("Handle error")
+    })
+
+```
 
 
 #### Next Step
