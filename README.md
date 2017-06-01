@@ -1,6 +1,3 @@
-# NBUtility
-
-
 ![Alt text](http://i.imgur.com/xE7UfDS.png "NBUtility-Image")
 
 [![Swift version](https://img.shields.io/badge/swift-3.0-orange.svg?style=flat.svg)](https://img.shields.io/badge/swift-3.0-orange.svg?style=flat.svg)
