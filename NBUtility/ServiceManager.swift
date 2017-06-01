@@ -47,9 +47,9 @@ var appMode: AppMode {
 
 
 
-// Create an Enum named as EndPoint to add app specific end points. Conform it with Directable to make you
+// Create an Enum named as Endpoint to add app specific end points. Conform it with Directable to make directable urls.
 
-enum EndPoint: Directable {
+enum Endpoint: Directable {
     
     
     static var baseUrl: String {
@@ -92,7 +92,7 @@ enum EndPoint: Directable {
         }
         
         let tail = "api"
-        return EndPoint.baseUrl + "/" + tail + "/" + servicePath
+        return Endpoint.baseUrl + "/" + tail + "/" + servicePath
     }
 }
 
@@ -139,24 +139,12 @@ class ServiceManager: Routable {
         let resultValue = result.value!
         if resultValue.isError {
             
-            //            if resultValue.statusCode == loggedInAnotherDeviceErrorCode {
-            //                handleTokenError(resultValue.message)
-            //            }
-            //            else if resultValue.statusCode == UserBlockErrorCode {
-            //                handleUserBlockedError(resultValue.message)
-            //            }
-            //            else if resultValue.statusCode == TranslatorBlockErrorCode {
-            //                handleInterpreterBlockedError(resultValue.message)
-            //            }
-            //            else if resultValue.statusCode == invalidTokenErrorCode {
-            //                handleTokenError(resultValue.message)
-            //            }
-            //            else if resultValue.statusCode == forceUpdateRequired {
-            //                handleForceUpdate(resultValue.message)
-            //            }
-            //            else {
-            failure(NSError(errorMessage: resultValue.message, code: resultValue.statusCode))
-            //            }
+//            if resultValue.statusCode == loggedInAnotherDeviceErrorCode {
+//                handleTokenError(resultValue.message)
+//            }
+//            else {
+                failure(NSError(errorMessage: resultValue.message, code: resultValue.statusCode))
+//            }
             
             return true
         }

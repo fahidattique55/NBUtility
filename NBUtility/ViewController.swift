@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        _ = manager.requestForArray(.get, service: EndPoint.countryList, authorized: true, mapperClass: WeatherCondition.self, success: { (response, result) in
+        _ = manager.requestForArray(.get, service: Endpoint.countryList, authorized: true, mapperClass: WeatherCondition.self, success: { (response, result) in
             
             print("success")
             

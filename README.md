@@ -13,9 +13,30 @@
 
 ## Features
 
-* Networking manager for API calls
+
+### Routable.swift Features
+
+*  It supports all HTTP request methods i.e GET, POST, PUT and DELETE
+*  It supports multipart requests for uploading data to your server
+*  It provides three methods for calling an HTTP request methods,
+    *  request 
+        *  You will get JSONTopModel as response of this method. You can parse it as per your need 
+    *  requestForObject 
+        *  You will get the auto-mapped object as response of this method. You just need to send the mapperClass in request parameter
+    *  requestForArray 
+        *  You will get the auto-mapped array of objects as response of this method. You just need to send the mapperClass in request parameter
+*  It provides three same methods for multipart API calls
+*  It allows you to make your API call authorized with only one Boolean parameter "authorized"  
+*  It gives you the flexibility for server error handling 
+*  It will handle the serialization errors of responses for all API calls by its own
 
 
+#### Special Features
+
+*  Protocol Oriented Networking manager
+*  Provides you the shared implementation of all HTTP and multipart request method
+*  Allows you to provide the custom implementation of any request method defined in the Routable protocol
+*  Highly structured with Abstraction and Namespacing techniques
 
 
 
@@ -77,43 +98,70 @@ $ pod install
 
 #### Step 2
 
-* Extend the ``` struct UrlService ``` to add your end points
+
+* Create an ``` enum Endpoint ``` to add app specific end points. Conform it with Directable to make directable urls from your end points.
 * It should look like following example,
 
 ```swift 
 
-extension UrlService {
-    static let login        = UrlService(rawValue: "user/login")
-    static let logout       = UrlService(rawValue: "user/logout")
-    static let countryList  = UrlService(rawValue: "user/countryList")
+enum Endpoint: Directable {
+
+    
+    //      Setup the base Url of your application according to the application mode
+
+    static var baseUrl: String {
+
+        var baseUrl = ""
+
+        switch appMode {
+        
+            case .test:
+                baseUrl = "http://apidev.accuweather.com/currentconditions"
+            case .production:
+                baseUrl = "http://apidev.accuweather.com/currentconditions"
+        }
+
+        return baseUrl
+    }
+
+
+
+
+    //      Define some endpoints like this,
+
+    case weatherConditions,
+    countryList
+
+
+
+
+
+    //      Implement the protocol method to make your app specific end points fully directable as Url
+    
+    func directableURLString() -> String {
+
+        var servicePath = ""
+
+        switch (self) {
+
+            case .weatherConditions:
+            servicePath = "get-weather-conditions"
+
+            case .countryList:
+            servicePath = "get-countries-data"
+        }
+
+        let tail = "api"
+        return Endpoint.baseUrl + "/" + tail + "/" + servicePath
+    }
 }
+
 ```
 
 
 
 
 #### Step 3
-
-* Extend the ``` struct UrlService ``` to conform it with ```swift protocol Directable  ```
-* It should look like following example,
-
-```swift 
-
-extension UrlService: Directable {
-
-    public func directableURLString() -> String {
-
-        return "<Base URL>" + "/" + "<Tail>" + "/" + self.rawValue
-    
-        // return "https://abc.com" + "/" + "api" + "/" + self.rawValue
-    }
-}
-```
-
-
-
-
-#### Step 4
 
 * Create a class to manage your API calls ``` class ServiceManager  ``` and conform it with ``` protocol Routable  ```
 * It should look like following example,
@@ -129,6 +177,7 @@ class ServiceManager: Routable {
     func authorizationHeadersIf(_ authorized: Bool) -> [String : String]? {
 
         //  You can send Open Auth Token, Appversion, API version and many more as per your need
+        
         return ["app-version":"1.0"]
     }
 
@@ -170,7 +219,7 @@ class ServiceManager: Routable {
 
     fileprivate let manager:ServiceManager = ServiceManager()
 
-    manager.request(.get, service: UrlService.countryList, success: { (response, jsonTopModelResult) in
+    manager.request(.get, service: Endpoint.countryList, success: { (response, jsonTopModelResult) in
         
         print("proceed with your jsonTopModelResult")
     
@@ -182,11 +231,61 @@ class ServiceManager: Routable {
 ```
 
 
-#### Next Step
-
-* Coming Soon...
+* Add "authorized" Boolean perameter in the same API call to add authorized headers
 
 
+```swift 
+
+    manager.request(.get, service: Endpoint.countryList, authorized: true, success: { (response, jsonTopModelResult) in
+
+        print("proceed with your jsonTopModelResult")
+
+    }, failure: { (error) in
+
+        print("Handle error")
+    })
+
+```
+
+
+
+#### Advance Usage
+
+* Get the Countries list (Array of custom objects) auto-mapped with the help of Routable protocol
+
+
+```swift 
+
+    manager.requestForArray(.get, service: Endpoint.countryList, mapperClass: Country.self, success: { (response, countries) in
+
+        print("proceed with your countries list")
+    
+    }, failure: { (error) in
+
+        print("Handle error")
+    })
+
+```
+
+
+* Get the Weather Conditions (Custom object) auto-mapped with the help of Routable protocol
+
+
+```swift 
+
+    manager.requestForObject(.get, service: Endpoint.weatherConditions, mapperClass: WeatherCondition.self, success: { (response, weatherConditions) in
+
+        print("proceed with your weather Conditions")
+
+    }, failure: { (error) in
+
+        print("Handle error")
+    })
+
+```
+
+
+* Same API calls can be user as multipart request for uploading data to your server. Use the multipart request methods of Routable protocol.
 
 
 ## License
