@@ -88,7 +88,7 @@ $ pod install
 ### ``` Routable.swift ```
 
 * It is a protocol oriented network manager which has the following features
-** All network calls will parse its responses with JSONTopModel as base class. You can find its implementation in ``` Routable.swift ```
+* All network calls will parse its responses with JSONTopModel as base class. You can find its implementation in ``` Routable.swift ```
 
 #### Step 1
 * Create a ``` ServiceManager.swift ``` file in your Xcode project
