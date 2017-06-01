@@ -31,8 +31,8 @@ public protocol Directable: MapContext {
 ///  Service template type closures for auto-mapping of custom object and custom object's array
 
 public struct ServiceSuccessBlock<T> {
-    typealias array = (_ response: HTTPURLResponse?, _ result: [T]?) -> Void
-    typealias object = (_ response: HTTPURLResponse?, _ result: T?) -> Void
+    public typealias array = (_ response: HTTPURLResponse?, _ result: [T]?) -> Void
+    public typealias object = (_ response: HTTPURLResponse?, _ result: T?) -> Void
 }
 
 
