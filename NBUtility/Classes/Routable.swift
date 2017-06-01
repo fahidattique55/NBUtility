@@ -27,28 +27,6 @@ public protocol Directable: MapContext {
 
 
 
-/// Extend the *UrlService* to add your app specific url service strings
-///
-/// - Example:
-///     - static let login  = UrlService(rawValue: "user/login")
-///     - static let logout = UrlService(rawValue: "user/logout")
-
-
-
-public struct UrlService : RawRepresentable {
-    
-    public typealias RawValue = String
-    public var rawValue: String
-    public init(rawValue: RawValue) {
-        self.rawValue = rawValue
-    }
-}
-
-
-
-
-
-
 
 ///  Service template type closures for auto-mapping of custom object and custom object's array
 

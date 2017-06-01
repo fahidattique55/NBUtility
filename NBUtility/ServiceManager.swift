@@ -38,7 +38,7 @@ enum AppMode: Int {
 
 
 var appMode: AppMode {
-    return .production
+    return .test
 }
 
 
@@ -47,42 +47,52 @@ var appMode: AppMode {
 
 
 
-// Extension of UrlService to add app specific url service methods
-//
-// - Examples:
-//     - static let login  = UrlService(rawValue: "user/login")
-//     - static let logout = UrlService(rawValue: "user/logout")
+// Create an Enum named as EndPoint to add app specific end points. Conform it with Directable to make you
 
-
-
-extension UrlService {
-    static let weatherConditions  = UrlService(rawValue: "260622.json?language=en&apikey=hoArfRosT1215")
-}
-
-
-
-
-
-
-
-
-
-// Extension of UrlService to conform protocol Directable
-//
-// - Warning !!!
-//     - Must implement this method to define app specific directable URLs including base, tail and service method strings
-//     - static let logout = UrlService(rawValue: "user/logout")
-
-
-
-
-extension UrlService: Directable {
+enum EndPoint: Directable {
     
-    public func directableURLString() -> String {
+    
+    static var baseUrl: String {
         
-        let servicePath = self.rawValue
-        let tail = "v1"
-        return ServiceManager.baseUrl + "/" + tail + "/" + servicePath
+        var baseUrl = ""
+        
+        switch appMode {
+        case .test:
+            baseUrl = "http://apidev.accuweather.com/currentconditions"
+        case .production:
+            baseUrl = "http://apidev.accuweather.com/currentconditions"
+        }
+        
+        return baseUrl
+    }
+
+    
+    
+    
+    
+    case weatherConditions,
+    countryList
+    
+    
+    
+    
+    
+    func directableURLString() -> String {
+        
+        var servicePath = ""
+        
+        switch (self) {
+            
+        case .weatherConditions:
+            servicePath = "get-weather-conditions"
+            
+        case .countryList:
+            servicePath = "get-countries-data"
+            
+        }
+        
+        let tail = "api"
+        return EndPoint.baseUrl + "/" + tail + "/" + servicePath
     }
 }
 
@@ -105,42 +115,19 @@ extension UrlService: Directable {
 
 class ServiceManager: Routable {
     
-    
-    static var baseUrl: String {
-        
-        var baseUrl = ""
-        
-        switch appMode {
-        case .test:
-            baseUrl = "http://apidev.accuweather.com/currentconditions"
-        case .production:
-            baseUrl = "http://apidev.accuweather.com/currentconditions"
-        }
-        return baseUrl
-    }
-    
-    
+
 
     
-    
-    
-    
-
     func authorizationHeadersIf(_ authorized: Bool) -> [String : String]? {
         
         var headers:[String: String]? = nil
         headers = [String : String]()
         if authorized {headers = ["Authorization": "Bearer \("appUtility.appAuthToken!")"]}
         headers!["platform"] = "ios"
-        
-        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-            headers!["app-version"] = version
-        }
+        headers!["app-version"] = "1.4.2"
         
         return headers
     }
-    
-    
     
     
     

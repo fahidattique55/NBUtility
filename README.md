@@ -64,9 +64,10 @@ $ pod install
 ## Usage
 
 
-### Routable.swift 
+### ``` Routable.swift ```
 
-
+* It is a protocol oriented network manager which has the following features
+** All network calls will parse its responses with JSONTopModel as base class. You can find its implementation in ``` Routable.swift ```
 
 #### Step 1
 * Create a ``` ServiceManager.swift ``` file in your Xcode project
@@ -76,7 +77,7 @@ $ pod install
 
 #### Step 2
 
-* Extend the ```swift struct UrlService  ``` to add your end points
+* Extend the ``` struct UrlService ``` to add your end points
 * It should look like following example,
 
 ```swift 
@@ -93,7 +94,7 @@ extension UrlService {
 
 #### Step 3
 
-* Extend the ```swift struct UrlService  ``` to conform it with ```swift protocol Directable  ```
+* Extend the ``` struct UrlService ``` to conform it with ```swift protocol Directable  ```
 * It should look like following example,
 
 ```swift 
@@ -114,7 +115,7 @@ extension UrlService: Directable {
 
 #### Step 4
 
-* Create a class to manage your API calls ```swift class ServiceManager  ``` and conform it with ```swift protocol Routable  ```
+* Create a class to manage your API calls ``` class ServiceManager  ``` and conform it with ``` protocol Routable  ```
 * It should look like following example,
 
 ```swift 
@@ -160,7 +161,7 @@ class ServiceManager: Routable {
 
 #### Step 5
 
-* In your controllers, you can use the ```swift   ServiceManager  ``` to manage your API calls
+* In your controllers, you can use the ```  ServiceManager  ``` to manage your network calls
 
 * Example for a simple API call is given below,
 
