@@ -11,19 +11,6 @@
 		294C495E1EDD40A600788C32 /* NSError+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294C495D1EDD40A600788C32 /* NSError+Additions.swift */; };
 		294C49621EDD752800788C32 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294C49611EDD752800788C32 /* ServiceManager.swift */; };
 		294C49641EDD75D400788C32 /* WeatherCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294C49631EDD75D400788C32 /* WeatherCondition.swift */; };
-		295280221EE80BCF00DE6CBB /* Dictionary+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295280151EE80BCF00DE6CBB /* Dictionary+Additions.swift */; };
-		295280231EE80BCF00DE6CBB /* NSArray+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295280161EE80BCF00DE6CBB /* NSArray+Additions.swift */; };
-		295280241EE80BCF00DE6CBB /* NSDate+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295280171EE80BCF00DE6CBB /* NSDate+Additions.swift */; };
-		295280261EE80BCF00DE6CBB /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295280191EE80BCF00DE6CBB /* String+Additions.swift */; };
-		295280271EE80BCF00DE6CBB /* UIFont+BrownStd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952801A1EE80BCF00DE6CBB /* UIFont+BrownStd.swift */; };
-		295280281EE80BCF00DE6CBB /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952801B1EE80BCF00DE6CBB /* UIImage+Additions.swift */; };
-		295280291EE80BCF00DE6CBB /* UIImageView+AlamofireImageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952801C1EE80BCF00DE6CBB /* UIImageView+AlamofireImageFilter.swift */; };
-		2952802A1EE80BCF00DE6CBB /* UINib+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952801D1EE80BCF00DE6CBB /* UINib+Additions.swift */; };
-		2952802B1EE80BCF00DE6CBB /* UIStoryboard+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952801E1EE80BCF00DE6CBB /* UIStoryboard+Additions.swift */; };
-		2952802C1EE80BCF00DE6CBB /* UITableView+UIRefresehControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2952801F1EE80BCF00DE6CBB /* UITableView+UIRefresehControl.swift */; };
-		2952802D1EE80BCF00DE6CBB /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295280201EE80BCF00DE6CBB /* UIView+Additions.swift */; };
-		2952802E1EE80BCF00DE6CBB /* UIViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295280211EE80BCF00DE6CBB /* UIViewController+Additions.swift */; };
-		295280311EE80D4300DE6CBB /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295280301EE80D4300DE6CBB /* FacebookManager.swift */; };
 		299AB7C81EDC09C600B4512A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AB7C71EDC09C600B4512A /* AppDelegate.swift */; };
 		299AB7CA1EDC09C600B4512A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AB7C91EDC09C600B4512A /* ViewController.swift */; };
 		299AB7CD1EDC09C600B4512A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 299AB7CB1EDC09C600B4512A /* Main.storyboard */; };
@@ -61,19 +48,6 @@
 		294C495D1EDD40A600788C32 /* NSError+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+Additions.swift"; sourceTree = "<group>"; };
 		294C49611EDD752800788C32 /* ServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		294C49631EDD75D400788C32 /* WeatherCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCondition.swift; sourceTree = "<group>"; };
-		295280151EE80BCF00DE6CBB /* Dictionary+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Additions.swift"; sourceTree = "<group>"; };
-		295280161EE80BCF00DE6CBB /* NSArray+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSArray+Additions.swift"; sourceTree = "<group>"; };
-		295280171EE80BCF00DE6CBB /* NSDate+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Additions.swift"; sourceTree = "<group>"; };
-		295280191EE80BCF00DE6CBB /* String+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
-		2952801A1EE80BCF00DE6CBB /* UIFont+BrownStd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+BrownStd.swift"; sourceTree = "<group>"; };
-		2952801B1EE80BCF00DE6CBB /* UIImage+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
-		2952801C1EE80BCF00DE6CBB /* UIImageView+AlamofireImageFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+AlamofireImageFilter.swift"; sourceTree = "<group>"; };
-		2952801D1EE80BCF00DE6CBB /* UINib+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINib+Additions.swift"; sourceTree = "<group>"; };
-		2952801E1EE80BCF00DE6CBB /* UIStoryboard+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Additions.swift"; sourceTree = "<group>"; };
-		2952801F1EE80BCF00DE6CBB /* UITableView+UIRefresehControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+UIRefresehControl.swift"; sourceTree = "<group>"; };
-		295280201EE80BCF00DE6CBB /* UIView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
-		295280211EE80BCF00DE6CBB /* UIViewController+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Additions.swift"; sourceTree = "<group>"; };
-		295280301EE80D4300DE6CBB /* FacebookManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
 		299AB7C41EDC09C600B4512A /* NBUtility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NBUtility.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		299AB7C71EDC09C600B4512A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		299AB7C91EDC09C600B4512A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -125,33 +99,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		295280141EE80BCF00DE6CBB /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				295280151EE80BCF00DE6CBB /* Dictionary+Additions.swift */,
-				295280161EE80BCF00DE6CBB /* NSArray+Additions.swift */,
-				295280171EE80BCF00DE6CBB /* NSDate+Additions.swift */,
-				295280191EE80BCF00DE6CBB /* String+Additions.swift */,
-				2952801A1EE80BCF00DE6CBB /* UIFont+BrownStd.swift */,
-				2952801B1EE80BCF00DE6CBB /* UIImage+Additions.swift */,
-				2952801C1EE80BCF00DE6CBB /* UIImageView+AlamofireImageFilter.swift */,
-				2952801D1EE80BCF00DE6CBB /* UINib+Additions.swift */,
-				2952801E1EE80BCF00DE6CBB /* UIStoryboard+Additions.swift */,
-				2952801F1EE80BCF00DE6CBB /* UITableView+UIRefresehControl.swift */,
-				295280201EE80BCF00DE6CBB /* UIView+Additions.swift */,
-				295280211EE80BCF00DE6CBB /* UIViewController+Additions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		2952802F1EE80D4300DE6CBB /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				295280301EE80D4300DE6CBB /* FacebookManager.swift */,
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
 		299AB7BB1EDC09C600B4512A = {
 			isa = PBXGroup;
 			children = (
@@ -178,8 +125,6 @@
 		299AB7C61EDC09C600B4512A /* NBUtility */ = {
 			isa = PBXGroup;
 			children = (
-				2952802F1EE80D4300DE6CBB /* Managers */,
-				295280141EE80BCF00DE6CBB /* Extensions */,
 				299AB7F61EDC0A1100B4512A /* Example */,
 				299AB7F51EDC0A0800B4512A /* Classes */,
 			);
@@ -535,26 +480,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				295280231EE80BCF00DE6CBB /* NSArray+Additions.swift in Sources */,
-				2952802C1EE80BCF00DE6CBB /* UITableView+UIRefresehControl.swift in Sources */,
-				2952802A1EE80BCF00DE6CBB /* UINib+Additions.swift in Sources */,
 				299AB7CA1EDC09C600B4512A /* ViewController.swift in Sources */,
-				2952802D1EE80BCF00DE6CBB /* UIView+Additions.swift in Sources */,
-				295280271EE80BCF00DE6CBB /* UIFont+BrownStd.swift in Sources */,
-				295280261EE80BCF00DE6CBB /* String+Additions.swift in Sources */,
 				299AB7C81EDC09C600B4512A /* AppDelegate.swift in Sources */,
-				2952802E1EE80BCF00DE6CBB /* UIViewController+Additions.swift in Sources */,
-				295280291EE80BCF00DE6CBB /* UIImageView+AlamofireImageFilter.swift in Sources */,
 				299AB7FA1EDC0E6500B4512A /* Routable.swift in Sources */,
 				294075781EDE93DD00D8AE4D /* README.md in Sources */,
-				295280281EE80BCF00DE6CBB /* UIImage+Additions.swift in Sources */,
 				294C495E1EDD40A600788C32 /* NSError+Additions.swift in Sources */,
-				295280241EE80BCF00DE6CBB /* NSDate+Additions.swift in Sources */,
-				295280221EE80BCF00DE6CBB /* Dictionary+Additions.swift in Sources */,
 				294C49621EDD752800788C32 /* ServiceManager.swift in Sources */,
-				295280311EE80D4300DE6CBB /* FacebookManager.swift in Sources */,
 				294C49641EDD75D400788C32 /* WeatherCondition.swift in Sources */,
-				2952802B1EE80BCF00DE6CBB /* UIStoryboard+Additions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
