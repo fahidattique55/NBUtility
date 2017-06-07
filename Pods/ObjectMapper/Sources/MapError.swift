@@ -2,11 +2,11 @@
 //  MapError.swift
 //  ObjectMapper
 //
-//  Created by Tristan Himmelman on 2016-09-26.
+//  Created by Tristan Himmelman on 2017-09-26.
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014-2016 Hearst
+//  Copyright (c) 2014-2017 Hearst
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal

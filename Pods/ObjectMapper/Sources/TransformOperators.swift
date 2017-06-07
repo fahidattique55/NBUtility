@@ -2,8 +2,8 @@
 //  TransformOperators.swift
 //  ObjectMapper
 //
-//  Created by Tristan Himmelman on 2016-09-26.
-//  Copyright © 2016 hearst. All rights reserved.
+//  Created by Tristan Himmelman on 2017-09-26.
+//  Copyright © 2017 hearst. All rights reserved.
 //
 
 import Foundation

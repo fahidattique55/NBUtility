@@ -3,7 +3,7 @@
 //  ObjectMapper
 //
 //  Created by Vitaliy Kuzmenko on 10/10/16.
-//  Copyright © 2016 hearst. All rights reserved.
+//  Copyright © 2017 hearst. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS) || os(watchOS)
